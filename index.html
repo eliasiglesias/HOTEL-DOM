@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+		<title>HOTEL</title>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row bg-dark">
+				<div class="col-12 d-flex justify-content-center my-4">
+					<h1 class="bg-danger rounded text-white px-4 py-2 shadow-lg">
+						HUB HOTEL
+					</h1>
+				</div>
+			</div>
+			<!-- NAVBAR SUPERIOR -->
+			<div class="row bg-light shadow d-flex justify-content-center">
+				<div class="col-8 d-flex justify-content-center">
+					<nav class="navbar navbar-expand-lg navbar-light">
+						<a
+							class="navbar-brand mr-5 bg-danger p-3 text-white"
+							href="#"
+							id="hotel-dashboard"
+							>HUB</a
+						>
+						<button
+							class="navbar-toggler"
+							type="button"
+							data-toggle="collapse"
+							data-target="#navbarNavAltMarkup"
+							aria-controls="navbarNavAltMarkup"
+							aria-expanded="false"
+							aria-label="Toggle navigation"
+						>
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+							<div class="navbar-nav">
+								<a
+									class="nav-item nav-link active mr-5 bg-info p-3 text-white"
+									href="#"
+									id="guests-button"
+									>Guests</a
+								>
+								<a
+									class="nav-item nav-link active mr-5 bg-success p-3 text-white"
+									href="#"
+									id="rooms-button"
+									>Rooms</a
+								>
+								<a
+									class="nav-item nav-link active mr-5 bg-warning p-3 text-white"
+									href="#"
+									id="change-room-button"
+									>Change Room</a
+								>
+								<a
+									class="nav-item nav-link active mr-5 bg-primary p-3 text-white"
+									href="#"
+									id="get-invoice-button"
+									>Get invoice</a
+								>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</div>
+
+			<div class="bg-image no-gutters">
+				<!-- CHECK IN || CHECK OUT -->
+				<div class="row d-flex justify-content-around">
+					<!-- CHECK IN -->
+					<div class="col-7 col-md-4 my-4 border bg-light shadow" id="check-in">
+						<h3 class="py-4 text-success text-center"><u>CHECK IN</u></h3>
+						<div class="row d-flex justify-content-center pb-4">
+							<div class="col-8">
+								<h5 class="text-secondary">
+									<u>Adult 1</u>
+								</h5>
+								<form id="check-in-form">
+									<div class="form-group">
+										<input
+											type="text"
+											class="form-control"
+											aria-describedby="emailHelp"
+											placeholder="ID Family"
+											id="id-family"
+										/>
+									</div>
+									<div class="form-group">
+										<input
+											type="text"
+											class="form-control"
+											placeholder="Name"
+											id="first-adult-name"
+										/>
+									</div>
+									<div class="form-group">
+										<input
+											type="text"
+											class="form-control"
+											placeholder="Surname"
+											id="first-adult-surname"
+										/>
+									</div>
+									<div class="form-group">
+										<input
+											type="number"
+											class="form-control"
+											placeholder="BirthYear"
+											min="1900"
+											max="2002"
+											id="first-adult-birthyear"
+										/>
+									</div>
+									<div class="form-group">
+										<input
+											type="number"
+											class="form-control"
+											placeholder="Phone number"
+											id="first-adult-phone-number"
+										/>
+									</div>
+									<div class="form-group">
+										<input
+											type="number"
+											class="form-control"
+											placeholder="Num rooms"
+											min="1"
+											max="20"
+											id="family-num-rooms"
+										/>
+									</div>
+
+									<!-- Button add adult -->
+									<button
+										type="button"
+										class="btn text-center btn-success mt-3"
+										data-toggle="modal"
+										data-target="#exampleModal"
+									>
+										Add another person +
+									</button>
+
+									<div class="my-3" id="check-in-counter"></div>
+
+									<div class="text-center mt-4 mb-3">
+										<button
+											type="submit"
+											class="btn btn-lg btn-danger"
+											id="check-in-button"
+										>
+											Check In
+										</button>
+									</div>
+								</form>
+								<div class="d-none" id="check-in-errors"></div>
+								<div class="d-none" id="check-in-ok"></div>
+							</div>
+						</div>
+					</div>
+					<!-- CHECK OUT -->
+					<div class="col-7 col-md-4" id="check-out">
+						<div
+							class="text-center text-danger my-4 pb-3 border bg-light shadow"
+						>
+							<h3 class="py-4"><u>CHECK OUT</u></h3>
+							<div class="row d-flex justify-content-center pb-4">
+								<div class="col-8">
+									<h5 class="text-secondary">
+										<u>Guests</u>
+									</h5>
+									<form id="check-out-form">
+										<div class="form-group">
+											<input
+												type="text"
+												class="form-control"
+												aria-describedby="emailHelp"
+												placeholder="ID Family"
+												id="check-out-idfamily"
+											/>
+										</div>
+
+										<div class="form-group">
+											<input
+												type="date"
+												class="form-control"
+												id="check-out-date"
+											/>
+										</div>
+										<div class="text-center">
+											<button
+												type="submit"
+												class="btn btn-lg btn-warning"
+												id="check-out-button"
+											>
+												Check Out
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+							<h5 class="text-danger" id="check-out-errors"></h5>
+							<h5 class="text-success" id="check-out-success"></h5>
+						</div>
+					</div>
+					<!-- WEATHER -->
+					<div class="col-7 col-md-4" id="weather">
+						<div class="text-center text-info my-4 pb-3 border bg-dark shadow">
+							<h3 class="py-4"><u>WEATHER</u></h3>
+							<div class="row d-flex justify-content-center pb-4">
+								<div class="col-8">
+									<h5 class="text-light">
+										<u>Tiempo actual</u>
+									</h5>
+								</div>
+								<div class="col-12 my-3">
+									<figure id="weather-figure"></figure>
+								</div>
+								<div
+									class="col-12 my-3 text-light"
+									id="weather-conditions"
+								></div>
+								<div class="col-12 my-3 text-light" id="degrees"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- MODAL -> Add Another Person -->
+				<div
+					class="modal fade"
+					id="exampleModal"
+					tabindex="-1"
+					role="dialog"
+					aria-labelledby="exampleModalLabel"
+					aria-hidden="true"
+				>
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<form action="" id="form-adult-children">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">
+										Add another person
+									</h5>
+									<button
+										type="button"
+										class="close"
+										data-dismiss="modal"
+										aria-label="Close"
+									>
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="form-group">
+										<input
+											type="text"
+											class="form-control"
+											aria-describedby="emailHelp"
+											placeholder="ID User"
+											id="another-person-id"
+										/>
+									</div>
+									<div class="form-group">
+										<input
+											type="text"
+											class="form-control"
+											placeholder="Name"
+											id="another-person-name"
+										/>
+									</div>
+									<div class="form-group">
+										<input
+											type="text"
+											class="form-control"
+											placeholder="Surname"
+											id="another-person-surname"
+										/>
+									</div>
+									<div class="form-group">
+										<input
+											type="number"
+											class="form-control"
+											placeholder="BirthYear"
+											min="1900"
+											max="2020"
+											id="another-person-birthyear"
+										/>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button
+										type="button"
+										class="btn btn-secondary"
+										data-dismiss="modal"
+									>
+										Close
+									</button>
+									<button
+										type="submit"
+										class="btn btn-primary"
+										id="another-adult-save"
+									>
+										Save person
+									</button>
+								</div>
+								<div class="d-none text-center" id="another-person-errors">
+									hola
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<!-- CHANGE ROOM -->
+				<div class="row d-flex justify-content-center">
+					<div class="col-6" id="change-room">
+						<div
+							class="text-center text-warning my-4 pb-3 border bg-light shadow"
+						>
+							<h3 class="py-4"><u>CHANGE ROOM</u></h3>
+							<div class="row d-flex justify-content-center pb-4">
+								<div class="col-6">
+									<h5 class="text-secondary">
+										<u>Room</u>
+									</h5>
+									<form id="change-room-form">
+										<div class="form-group">
+											<input
+												type="text"
+												class="form-control"
+												aria-describedby="emailHelp"
+												placeholder="ID Room"
+												id="change-room-id"
+											/>
+										</div>
+
+										<div class="text-center">
+											<button
+												type="submit"
+												class="btn btn-lg btn-info"
+												id="change-room-button"
+											>
+												Get new room
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+							<h5 class="text-danger" id="change-room-errors"></h5>
+							<h5 class="text-success" id="change-room-success"></h5>
+						</div>
+					</div>
+				</div>
+
+				<!-- GET INVOICE -->
+				<div class="row d-flex justify-content-center">
+					<div class="col-6" id="get-invoice">
+						<div class="text-center text-success my-4 border bg-light shadow">
+							<h3 class="py-4"><u>GET INVOICE</u></h3>
+							<div class="row d-flex justify-content-center pb-4">
+								<div class="col-6">
+									<h5 class="text-secondary">
+										<u>Family</u>
+									</h5>
+									<form id="get-invoice-form">
+										<div class="form-group">
+											<input
+												type="text"
+												class="form-control"
+												aria-describedby="emailHelp"
+												placeholder="ID Family"
+												id="get-invoice-idfamily"
+											/>
+										</div>
+
+										<div class="form-group">
+											<input
+												type="date"
+												class="form-control"
+												placeholder="BirthYear"
+												id="get-invoice-date"
+											/>
+										</div>
+										<div class="text-center">
+											<button
+												type="submit"
+												class="btn btn-lg btn-warning"
+												id="get-invoice-button"
+											>
+												Get invoice
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+							<h5 class="text-danger" id="get-invoice-errors"></h5>
+							<h5 class="text-success" id="get-invoice-success"></h5>
+						</div>
+					</div>
+				</div>
+
+				<!-- GUESTS -->
+				<div class="row mt-4 d-flex justify-content-center">
+					<div class="col-8" id="guests-table">
+						<table class="table text-center border shadow bg-light">
+							<thead>
+								<tr>
+									<th scope="col">idFamily</th>
+									<th scope="col">Rooms</th>
+									<th scope="col">Adult Name</th>
+									<th scope="col">People</th>
+								</tr>
+							</thead>
+							<tbody id="guests-table-body"></tbody>
+						</table>
+						<!-- OLD GUESTS -->
+						<div class="d-flex justify-content-center mb-5">
+							<button type="button" class="btn btn-dark" id="old-guests">
+								Old Guests
+							</button>
+						</div>
+						<div id="old-guests-table">
+							<table class="table text-center border shadow bg-light">
+								<thead>
+									<tr>
+										<th scope="col">idFamily</th>
+										<th scope="col">Adult Name</th>
+										<th scope="col">People</th>
+									</tr>
+								</thead>
+								<tbody id="old-guests-table-body"></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<!-- ROOMS -->
+				<div class="row mt-2 d-flex justify-content-center">
+					<div class="col-8" id="rooms-table">
+						<table class="table text-center border shadow bg-light">
+							<thead>
+								<tr>
+									<th scope="col">idRoom</th>
+									<th scope="col">Capacity</th>
+									<th scope="col">Price</th>
+									<th scope="col">Available</th>
+								</tr>
+							</thead>
+							<tbody class="text-center" id="rooms-table-body"></tbody>
+						</table>
+						<!-- OCCUPED & EMPTY ROOMS -->
+						<div class="d-flex justify-content-center mb-5">
+							<button
+								type="button"
+								class="btn btn-secondary mx-2"
+								id="ocupped-rooms"
+							>
+								Ocupped Rooms
+							</button>
+							<button
+								type="button"
+								class="btn btn-secondary mx-2"
+								id="empty-rooms"
+							>
+								Empty Rooms
+							</button>
+						</div>
+						<div id="ocupped-rooms-table">
+							<table class="table text-center border shadow bg-light">
+								<thead>
+									<tr>
+										<th scope="col">idRoom</th>
+										<th scope="col">Capacity</th>
+										<th scope="col">Price</th>
+										<th scope="col">ID Guests</th>
+									</tr>
+								</thead>
+								<tbody id="ocupped-rooms-table-body"></tbody>
+							</table>
+						</div>
+						<div id="empty-rooms-table">
+							<table class="table text-center border shadow bg-light">
+								<thead>
+									<tr>
+										<th scope="col">idRoom</th>
+										<th scope="col">Capacity</th>
+										<th scope="col">Price</th>
+									</tr>
+								</thead>
+								<tbody id="empty-rooms-table-body"></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<!-- TABLE INVOICE -->
+				<div class="row d-flex justify-content-center">
+					<div class="col-8">
+						<div class="table-responsive">
+							<table class="table table-hover table-dark" id="invoice-table">
+								<thead class="text-center">
+									<tr>
+										<th scope="col" class="py-4">idFamily</th>
+										<th scope="col" class="py-4">Adult Name</th>
+										<th scope="col" class="py-4" id="rooms-or-tlf"></th>
+										<th scope="col" class="py-4">Total Invoice</th>
+									</tr>
+								</thead>
+								<tbody class="text-center my-5" id="invoice-table-body"></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="./js/index.js" type="module"></script>
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+			crossorigin="anonymous"
+		></script>
+	</body>
+</html>
