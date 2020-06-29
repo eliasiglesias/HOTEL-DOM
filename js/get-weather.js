@@ -11,6 +11,9 @@ const cityPostalCode = "15007";
 
 const getWeather = () => {
 	const result = getKeyByPostalCode(cityPostalCode);
+	weatherImg.innerHTML = "";
+	weatherDegrees.innerHTML = "";
+	weatherInfo.innerHTML = "";
 	result
 		.then((weather) => {
 			const result = getWeatherByKey(weather[0].Key);

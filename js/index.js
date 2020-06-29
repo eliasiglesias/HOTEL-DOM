@@ -65,6 +65,9 @@ import {
 // Import check out function
 import { checkOutFunction } from "./check-out.js";
 
+// Import constante video player
+import { video } from "./const-declarations.js";
+
 // Import constantes Get Invoice
 import {
 	getInvoiceForm,
@@ -140,6 +143,7 @@ const startPage = () => {
 	guests.classList.add("d-none");
 	rooms.classList.add("d-none");
 	weather.classList.add("d-none");
+	video.classList.remove("d-none");
 };
 
 startPage();
@@ -157,15 +161,17 @@ let familyToAdd = setNewFamilyObject();
 // Guardar el adulto o los niños a mayores en el objeto familyToAdd
 checkInAnotherForm.addEventListener("submit", (event) => {
 	event.preventDefault();
-	checkInAnotherErrors.classList.add("d-none");
 	checkInAnotherErrors.innerHTML = "";
 	const id = checkInAnotherId.value;
 	const name = checkInAnotherName.value;
 	const surname = checkInAnotherSurname.value;
 	const birthyear = 2020 - parseInt(checkInAnotherBirthyear.value);
+	// Crea un objeto con los datos de la persona introducida
 	const newPerson = setAnotherPerson(id, name, surname, birthyear);
+	// Chequea que los datos de la persona sean válidos
 	const result = checkAnotherPersonParameters(newPerson);
 
+	// Muestra los errores posibles
 	if (result !== true) {
 		checkInAnotherErrors.classList.remove("d-none");
 		result.forEach((value, index) => {
@@ -177,6 +183,7 @@ checkInAnotherForm.addEventListener("submit", (event) => {
 		return;
 	}
 
+	// Acciones para usuario menor de edad
 	if (birthyear < 18) {
 		const child = familyToAdd.children.find((value) => value.idCard === id);
 		// Comprueba que no se haya añadido un hijo con el midmo ID
@@ -195,6 +202,7 @@ checkInAnotherForm.addEventListener("submit", (event) => {
 			`<div class="text-success mb-2">Menor añadido con éxito!</div>`
 		);
 		familyToAdd.children.push(newPerson);
+		// Contador de personas. No cuenta a las menores de 4 años porque no pagan
 		checkInCounter.innerHTML = "";
 		checkInCounter.insertAdjacentHTML(
 			"beforeend",
@@ -208,7 +216,7 @@ checkInAnotherForm.addEventListener("submit", (event) => {
 		return;
 	}
 
-	// Comprobamos si el segundo adulto ya ha sido añadido al objeto
+	// Comprobamos si el segundo adulto ya ha sido añadido al objeto, ya que solo se puede añadir uno
 	if (Object.keys(familyToAdd.parent2).length !== 0) {
 		checkInAnotherErrors.classList.remove("d-none");
 		checkInAnotherErrors.insertAdjacentHTML(
@@ -224,6 +232,7 @@ checkInAnotherForm.addEventListener("submit", (event) => {
 		"beforeend",
 		`<div class="text-success mb-2">Adulto añadido con éxito!</div>`
 	);
+	// Contador de personas mayores de 4 años
 	checkInCounter.innerHTML = "";
 	checkInCounter.insertAdjacentHTML(
 		"beforeend",
@@ -259,7 +268,7 @@ checkInForm.addEventListener("submit", (event) => {
 	const numRooms = parseInt(checkInNumRooms.value);
 
 	// Añadir datos de la familia
-	familyToAdd.idFamily = checkInIdFamily.value;
+	familyToAdd.idFamily = idFamily;
 	familyToAdd.tlf = phone;
 	familyToAdd.checkInDate = checkInDate;
 	familyToAdd.parent1 = setAnotherPerson(idFamily, name, surname, birthyear);
@@ -367,6 +376,8 @@ checkOutForm.addEventListener("submit", (event) => {
 			totalInvoice
 		);
 	}
+	// Oculta el video
+	video.classList.add("d-none");
 	checkOutIdFamily.value = "";
 	checkOutDate.value = "";
 });

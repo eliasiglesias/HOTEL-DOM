@@ -86,6 +86,9 @@ const weatherImg = document.querySelector("#weather-figure");
 const weatherDegrees = document.querySelector("#degrees");
 const weatherInfo = document.querySelector("#weather-conditions");
 
+// Constante Video Youtube
+const video = document.querySelector("#player");
+
 // Export Enlaces Navbar
 export { dashboard, guestsLink, roomsLink, changeRoomLink, getInvoiceLink };
 
@@ -127,6 +130,9 @@ export {
 	checkOutErrors,
 	checkOutSuccess,
 };
+
+// Export constante video player
+export { video };
 
 // Export constantes Get Invoice
 export {

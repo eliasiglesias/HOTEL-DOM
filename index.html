@@ -78,8 +78,10 @@
 				<!-- CHECK IN || CHECK OUT -->
 				<div class="row d-flex justify-content-around">
 					<!-- CHECK IN -->
-					<div class="col-7 col-md-4 my-4 border bg-light shadow" id="check-in">
-						<h3 class="py-4 text-success text-center"><u>CHECK IN</u></h3>
+					<div class="col-7 col-md-4 my-4 bg-light border shadow" id="check-in">
+						<h3 class="py-4 text-danger text-center">
+							<u>CHECK IN</u>
+						</h3>
 						<div class="row d-flex justify-content-center pb-4">
 							<div class="col-8">
 								<h5 class="text-secondary">
@@ -143,7 +145,7 @@
 									<!-- Button add adult -->
 									<button
 										type="button"
-										class="btn text-center btn-success mt-3"
+										class="btn text-center btn-success mt-4"
 										data-toggle="modal"
 										data-target="#exampleModal"
 									>
@@ -152,7 +154,7 @@
 
 									<div class="my-3" id="check-in-counter"></div>
 
-									<div class="text-center mt-4 mb-3">
+									<div class="text-center mt-5 pt-3 mb-3">
 										<button
 											type="submit"
 											class="btn btn-lg btn-danger"
@@ -211,6 +213,7 @@
 							<h5 class="text-danger" id="check-out-errors"></h5>
 							<h5 class="text-success" id="check-out-success"></h5>
 						</div>
+						<div id="player"></div>
 					</div>
 					<!-- WEATHER -->
 					<div class="col-7 col-md-4" id="weather">
@@ -521,6 +524,44 @@
 						</div>
 					</div>
 				</div>
+
+				<!-- VIDEO Youtube -->
+
+				<script>
+					// 2. This code loads the IFrame Player API code asynchronously.
+					var tag = document.createElement("script");
+
+					tag.src = "https://www.youtube.com/iframe_api";
+					var firstScriptTag = document.getElementsByTagName("script")[0];
+					firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+					// 3. This function creates an <iframe> (and YouTube player)
+					//    after the API code downloads.
+					var player;
+					function onYouTubeIframeAPIReady() {
+						player = new YT.Player("player", {
+							height: "350",
+							width: "605",
+							videoId: "cBjoJlU95GU",
+							events: {
+								onReady: onPlayerReady,
+							},
+						});
+					}
+
+					// 4. The API will call this function when the video player is ready.
+					function onPlayerReady(event) {
+						event.target.playVideo();
+					}
+
+					// 5. The API calls this function when the player's state changes.
+					//    The function indicates that when playing a video (state=1),
+					//    the player should play for six seconds and then stop.
+					var done = false;
+					function stopVideo() {
+						player.stopVideo();
+					}
+				</script>
 			</div>
 		</div>
 		<script src="./js/index.js" type="module"></script>
